@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class BaseAnimation : MonoBehaviour
+public class Turrent : MonoBehaviour
 {
-    public float rotationSpeed = 20;
-    private Vector3 Rotation;
+    public float attackDamage;
+    public float range;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +16,6 @@ public class BaseAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, 0, Time.deltaTime * rotationSpeed);
+        
     }
 }

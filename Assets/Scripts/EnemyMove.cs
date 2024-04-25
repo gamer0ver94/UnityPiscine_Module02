@@ -17,9 +17,12 @@ public class EnemyMove : MonoBehaviour
     {
         //transform.position += Vector3.down * Time.deltaTime * speed;
         rb.velocity = Vector2.down * Time.deltaTime * speed;
-        
+        if (GameManager._GameManager.IsGameOver)
+        {
+            Destroy(this.gameObject);
+        }
     }
-    void OnCollisionEnter2D(Collision2D collider)
+    void OnTriggerEnter2D(Collider2D collider)
     {
         Destroy(this.gameObject);
         Debug.Log("collided in base");

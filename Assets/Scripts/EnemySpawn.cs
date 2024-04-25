@@ -18,7 +18,7 @@ public class EnemySpawn : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer >= delay && numberOfSpawns > 0)
+        if (timer >= delay && numberOfSpawns > 0 && !GameManager._GameManager.IsGameOver)
         {
             Instantiate(enemy,transform.position,Quaternion.identity);
             timer = 0;
