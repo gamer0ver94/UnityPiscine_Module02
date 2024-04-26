@@ -120,7 +120,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.48437503
+  m_Radius: 1.91
 --- !u!114 &6335609682284977730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,5 +136,5 @@ MonoBehaviour:
   attackDamage: 0.3
   range: 0
   attackDelay: 2
-  projectile: {fileID: 0}
-  projectileSpeed: 0
+  projectiles: {fileID: 7921933829249512928, guid: 60a4f2636756e41479530561736bd4ad, type: 3}
+  projectileSpeed: 400

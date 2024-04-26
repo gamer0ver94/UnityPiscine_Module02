@@ -16,7 +16,6 @@ public class EnemyMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //transform.position += Vector3.down * Time.deltaTime * speed;
         rb.velocity = Vector2.down * Time.deltaTime * speed;
         if (GameManager._GameManager.IsGameOver)
         {

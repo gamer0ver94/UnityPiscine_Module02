@@ -34,15 +34,14 @@ public class Turrent : MonoBehaviour
     {
         if (timer >= attackDelay)
         {
-            Debug.Log(targets[0].transform.position);
-           
+            int closestTarget = GetClosestTargetIndex();
             GameObject projectile = Instantiate(projectiles, transform.position, Quaternion.identity);
             projectile.AddComponent<Rigidbody2D>();
             projectile.GetComponent<Rigidbody2D>().gravityScale = 0;
             projectile.AddComponent<CircleCollider2D>();
             projectile.AddComponent<Projectile>();
             projectile.GetComponent<Projectile>().attackDamage = attackDamage;
-            Vector3 direction = targets[0].transform.position - transform.position;
+            Vector3 direction = targets[closestTarget].transform.position - transform.position;
             direction.Normalize();
             projectile.GetComponent<Rigidbody2D>().AddForceAtPosition(direction * projectileSpeed, transform.position);
             timer = 0;
@@ -57,15 +56,28 @@ public class Turrent : MonoBehaviour
         }
     }
 
+    int GetClosestTargetIndex()
+    {
+        float closesteTarget = (transform.position - targets[0].transform.position).magnitude;
+        int index = 0;
+        for (int i = 0; i < targets.Count; i++)
+        {
+            if (targets.Count >= i && (transform.position - targets[i].transform.position).magnitude < closesteTarget)
+            {
+                closesteTarget = (transform.position - targets[i].transform.position).magnitude;
+                index = i; 
+            }
+        }
+        return index;
+    }
+
     void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("out of range");
         if (collision.gameObject.tag == "Enemy")
         {
             if (targets.Count != 0)
             {
                 targets.RemoveAt(0);
-                targets.Sort();
             }
         }
 
