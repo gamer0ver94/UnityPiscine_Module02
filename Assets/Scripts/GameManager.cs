@@ -48,8 +48,7 @@ public class GameManager : MonoBehaviour
         }
         if (spawner.numberOfSpawns <= 0)
         {
-            
-            Debug.Log("Finished the spawn");
+           
         }
     }
 }

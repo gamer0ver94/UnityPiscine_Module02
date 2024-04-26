@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
+    public float hp = 3f;
     public float speed = 0.5f;
     private Rigidbody2D rb;
     // Start is called before the first frame update
@@ -22,9 +23,20 @@ public class EnemyMove : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    void OnTriggerEnter2D(Collider2D collider)
+
+    private void OnCollisionEnter2D(Collision2D collider)
     {
-        Destroy(this.gameObject);
-        Debug.Log("collided in base");
+        if (collider.gameObject.tag == "Base")
+        {
+            Destroy(this.gameObject);
+        }
+        if (collider.gameObject.GetComponent<CircleCollider2D>().gameObject.tag == "Projectile")
+        {
+            hp -= collider.gameObject.GetComponent<CircleCollider2D>().GetComponent<Projectile>().attackDamage;
+            if (hp <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+        }
     }
 }
